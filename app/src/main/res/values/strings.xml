@@ -3,4 +3,6 @@
     <string name="app_start_url">https://play.isketch.app</string>
     <string name="connecting_to_server">Connecting to server...</string>
     <string name="isketch_logo">iSketch Logo</string>
+    <string name="try_again">Try Again</string>
+    <string name="the_server_is_un_reachable">The server is un-reachable.</string>
 </resources>
