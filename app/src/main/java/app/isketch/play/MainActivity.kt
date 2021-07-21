@@ -1,6 +1,7 @@
 package app.isketch.play
 
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.*
@@ -26,7 +27,15 @@ class MainActivity : AppCompatActivity() {
         wvSettings.javaScriptEnabled = true
         wvSettings.domStorageEnabled = true
         wvSettings.mediaPlaybackRequiresUserGesture = false
-        mainWV.loadUrl(getString(R.string.app_start_url))
+        var location : Uri? = intent.data
+        if(location == null) {
+            mainWV.loadUrl(getString(R.string.app_start_url))
+        } else {
+            if(location.scheme == "http") {
+                location = location.buildUpon().scheme("https").build()
+            }
+            mainWV.loadUrl(location.toString())
+        }
         btnTryAgain.setOnClickListener {
             mainWV.loadUrl(getString(R.string.app_start_url))
         }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="app.isketch.play">
     <uses-feature
         android:name="android.software.leanback"
@@ -16,11 +17,25 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.ISketchApp"
         android:banner="@drawable/ic_isketch_foreground">
-        <activity android:name=".MainActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize">
+            <tools:validation testUrl="https://play.isketch.app" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="play.isketch.app" />
+                <data
+                    android:scheme="http"
+                    android:host="play.isketch.app" />
             </intent-filter>
         </activity>
         <meta-data
