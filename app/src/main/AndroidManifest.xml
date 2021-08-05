@@ -18,6 +18,7 @@
         android:theme="@style/Theme.ISketchApp"
         android:banner="@drawable/isketch_coverart">
         <activity
+            android:label="@string/app_name_short"
             android:name=".MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize">
             <tools:validation testUrl="https://play.isketch.app" />
