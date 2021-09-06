@@ -1,6 +1,6 @@
 package app.isketch.play
 
-import android.app.StatusBarManager
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
@@ -9,11 +9,9 @@ import android.os.Bundle
 import android.view.Window
 import android.webkit.*
 import android.widget.Button
-import android.widget.Toast
-import androidx.appcompat.widget.ThemeUtils
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
-import java.util.logging.ConsoleHandler
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -68,6 +66,15 @@ class WVCOverride : WebViewClient() {
         MainActivity.retryView.isVisible = true
         MainActivity.loadView.isVisible = false
         super.onReceivedError(view, request, error)
+    }
+    override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+        if(request?.url.toString().startsWith("https://play.isketch.app") == false) {
+            val intent = Intent(Intent.ACTION_VIEW, request?.url)
+            if(view != null) startActivity(view.context, intent, null)
+            return true
+        } else {
+            return super.shouldOverrideUrlLoading(view, request)
+        }
     }
     override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
         errorHappened = false
